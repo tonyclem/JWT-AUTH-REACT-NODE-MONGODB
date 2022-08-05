@@ -1,18 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { useCookies } from "react-cookie";
 
 export default function Login() {
-  const [cookies] = useCookies([]);
   const navigation = useNavigate();
-
-  useEffect(() => {
-    if (cookies.jwt) {
-      navigation("/");
-    }
-  }, [cookies, navigation]);
 
   const [values, setValues] = React.useState({
     email: "",

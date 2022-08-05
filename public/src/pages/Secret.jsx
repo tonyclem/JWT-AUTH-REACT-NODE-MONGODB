@@ -10,7 +10,7 @@ export default function Secret() {
   const [cookies, setCookie, removeCookie] = useCookies([]);
   useEffect(() => {
     const verifyUser = async () => {
-      if (!cookies.token) {
+      if (!cookies.jwt) {
         navigation("/login");
       } else {
         const { data } = await axios.post(
@@ -19,7 +19,7 @@ export default function Secret() {
           { withCredentials: true }
         );
         if (!data.status) {
-          removeCookie("token");
+          removeCookie("jwt");
           navigation("/login");
         } else toast(`HI ${data.user}`, { theme: "dark" });
       }
@@ -28,7 +28,7 @@ export default function Secret() {
   }, [cookies, navigation, removeCookie]);
 
   const logOut = () => {
-    removeCookie("token");
+    removeCookie("jwt");
     navigation("/register");
   };
 

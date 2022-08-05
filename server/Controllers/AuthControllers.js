@@ -55,7 +55,6 @@ module.exports.register = async (req, res, next) => {
 module.exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    console.log(email, password);
     const user = await UserModel.login(email, password);
     const token = createToken(user._id);
 
